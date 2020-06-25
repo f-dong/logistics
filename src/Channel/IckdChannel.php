@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the uuk020/logistics.
+ * This file is part of the daley/logistics.
  *
  * (c) daley <poicue@163.com>
  *
