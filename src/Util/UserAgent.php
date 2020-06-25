@@ -12,8 +12,7 @@
 namespace Daley\Logistics\Util;
 
 /**
- * 随机UA
- * @package Daley\Logistics\Util
+ * 随机UA.
  */
 trait UserAgent
 {

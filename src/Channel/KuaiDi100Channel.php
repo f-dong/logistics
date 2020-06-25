@@ -26,9 +26,11 @@ class KuaiDi100Channel extends Channel
     /**
      * 调用查询接口.
      *
-     * @param string $code 快递单号
+     * @param string $code    快递单号
      * @param string $company 物流公司编码 留空自动获取
+     *
      * @return array
+     *
      * @throws HttpException
      * @throws \Daley\Logistics\Exceptions\InvalidArgumentException
      */
@@ -45,8 +47,8 @@ class KuaiDi100Channel extends Channel
         $config = $this->getConfig();
         $params = [
             'customer' => $config['app_secret'],
-            'sign'     => strtoupper(md5($postJson . $config['app_key'] . $config['app_secret'])),
-            'param'    => $postJson,
+            'sign' => strtoupper(md5($postJson.$config['app_key'].$config['app_secret'])),
+            'param' => $postJson,
         ];
 
         try {

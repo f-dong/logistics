@@ -28,7 +28,7 @@ class Factory
                 throw new InvalidArgumentException(sprintf('Class "%s" not exists.', $className));
             }
 
-            $instance = new $className;
+            $instance = new $className();
 
             if (!($instance instanceof Channel)) {
                 throw new InvalidArgumentException(sprintf('Class "%s" not inherited from %s.', $name, Channel::class));
@@ -55,6 +55,6 @@ class Factory
 
         $name = ucfirst(str_replace(['-', '_', ' '], '', $name));
 
-        return __NAMESPACE__ . "\\Channel\\{$name}Channel";
+        return __NAMESPACE__."\\Channel\\{$name}Channel";
     }
 }

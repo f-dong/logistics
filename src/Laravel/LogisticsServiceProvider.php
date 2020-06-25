@@ -27,13 +27,13 @@ class LogisticsServiceProvider extends ServiceProvider
 
     /**
      * Boot the service.
-     *
      */
     public function boot()
     {
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([
-                dirname(dirname(__DIR__)) . '/config/logistics.php' => config_path('logistics.php'), ],
+            $this->publishes(
+                [
+                dirname(dirname(__DIR__)).'/config/logistics.php' => config_path('logistics.php'), ],
                 'logistics'
             );
         } elseif ($this->app instanceof LumenApplication) {
@@ -43,12 +43,10 @@ class LogisticsServiceProvider extends ServiceProvider
 
     /**
      * Register the service.
-     *
-     * @return void
      */
     public function register()
     {
-        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/logistics.php', 'logistics');
+        $this->mergeConfigFrom(dirname(dirname(__DIR__)).'/config/logistics.php', 'logistics');
 
         $this->app->singleton(Logistics::class, function () {
             return new Logistics(config('logistics'));
