@@ -11,7 +11,6 @@
 
 namespace Daley\Logistics\Tests;
 
-use Daley\Logistics\Channel\JiSuChannel;
 use Daley\Logistics\Util\ChannelCode;
 use Daley\Logistics\Util\UserAgent;
 use GuzzleHttp\Client;
@@ -38,7 +37,7 @@ class LogisticsTest extends TestCase
     }
 
     /**
-     * 测试不存在渠道
+     * 测试不存在渠道.
      *
      * @throws InvalidArgumentException
      * @throws \Daley\Logistics\Exceptions\NoAvailableException
@@ -60,6 +59,6 @@ class LogisticsTest extends TestCase
     {
         $supportLogistics = \Mockery::mock(ChannelCode::class);
         $supportLogistics->shouldReceive('getCode')->andReturn('yuantong');
-        $this->assertSame('yuantong', $supportLogistics->getCode('kuaidi100', 'YT9200095554375', new Client(['timeout'  => 10, 'headers' => $this->getUserAgent(), 'verify' => false])));
+        $this->assertSame('yuantong', $supportLogistics->getCode('kuaidi100', 'YT9200095554375', new Client(['timeout' => 10, 'headers' => $this->getUserAgent(), 'verify' => false])));
     }
 }

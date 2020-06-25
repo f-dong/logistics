@@ -16,7 +16,7 @@ use Daley\Logistics\Exceptions\InvalidArgumentException;
 class Config
 {
     /**
-     * 服务商key配置
+     * 服务商key配置.
      *
      * @var string[][]
      */
@@ -28,25 +28,28 @@ class Config
     ];
 
     /**
-     * 获取配置
+     * 获取配置.
      *
      * @param string $key 获取渠道名
+     *
      * @return array
+     *
      * @throws InvalidArgumentException
      */
     public static function get($key)
     {
         if (!isset(self::$config[$key])) {
-            throw new InvalidArgumentException('Invalid parameter:' . $key);
+            throw new InvalidArgumentException('Invalid parameter:'.$key);
         }
 
         return self::$config[$key];
     }
 
     /**
-     * 更新配置
+     * 更新配置.
      *
      * @param array $config 配置参数
+     *
      * @return array
      */
     public static function set(array $config)

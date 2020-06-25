@@ -25,7 +25,9 @@ class JiSuChannel extends Channel
      *
      * @param string $code
      * @param string $company
+     *
      * @return array
+     *
      * @throws HttpException
      * @throws \Daley\Logistics\Exceptions\InvalidArgumentException
      */
@@ -46,12 +48,10 @@ class JiSuChannel extends Channel
         }
 
         return $this->response;
-
     }
 
     /**
      * 统一物流信息.
-     *
      */
     protected function format()
     {
@@ -73,7 +73,7 @@ class JiSuChannel extends Channel
     {
         $jsonToArray = json_decode($response, true);
 
-        if (!isset($jsonToArray['status']) || $jsonToArray['status'] != 0) {
+        if (!isset($jsonToArray['status']) || 0 != $jsonToArray['status']) {
             $this->response = [
                 'status' => 0,
                 'message' => isset($jsonToArray['msg']) ? $jsonToArray['msg'] : '物流信息查询失败',

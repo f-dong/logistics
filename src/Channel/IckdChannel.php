@@ -44,7 +44,9 @@ class IckdChannel extends Channel
      *
      * @param string $code
      * @param string $company
+     *
      * @return array
+     *
      * @throws HttpException
      */
     public function query($code, $company = '')
@@ -56,10 +58,11 @@ class IckdChannel extends Channel
             'tk' => $this->randCode(),
             'tm' => time() - 1,
             'callback' => '_jqjsp',
-            '_' . time(),
+            '_'.time(),
         ];
+
         try {
-            $res = $this->httpClient->get($this->url . $code, ['query' => $urlParams, 'headers' => ['referer: https://biz.trace.ickd.cn']]);
+            $res = $this->httpClient->get($this->url.$code, ['query' => $urlParams, 'headers' => ['referer: https://biz.trace.ickd.cn']]);
 
             $this->toArray($res->getBody()->getContents());
         } catch (\Exception $e) {
@@ -82,7 +85,7 @@ class IckdChannel extends Channel
         if (preg_match($pattern, $response, $match)) {
             $response = json_decode($match[2], true);
             $this->response = [
-                'status' => $response['status'] == 3 ? 1 : 0,
+                'status' => 3 == $response['status'] ? 1 : 0,
                 'message' => $response['message'],
                 'error_code' => isset($response['errCode']) ? $response['errCode'] : '',
                 'data' => isset($response['data']) ? $response['data'] : '',
