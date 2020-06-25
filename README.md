@@ -3,6 +3,7 @@
 
 <p align="center"> 一个简单便捷查询运单快递信息的SDK. </p>
 
+[![Build Status](https://travis-ci.org/f-dong/logistics.svg?branch=master)](https://travis-ci.org/f-dong/logistics)
 [![License](https://poser.pugx.org/wythe/logistics/license)](https://packagist.org/packages/wythe/logistics)
 
 ## 支持查询接口平台
