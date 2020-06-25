@@ -11,7 +11,6 @@
 
 namespace Daley\Logistics;
 
-use Daley\Logistics\Exceptions\HttpException;
 use Daley\Logistics\Exceptions\InvalidArgumentException;
 use Daley\Logistics\Exceptions\NoAvailableException;
 
@@ -25,14 +24,14 @@ class Logistics
     const SUCCESS = 'success';
 
     /**
-     * 失败
+     * 失败.
      *
      * @var string
      */
     const FAILURE = 'failure';
 
     /**
-     * 配置项
+     * 配置项.
      *
      * @var array
      */
@@ -46,21 +45,21 @@ class Logistics
     protected $factory;
 
     /**
-     * 默认渠道
+     * 默认渠道.
      *
      * @var string[]
      */
     protected $channel = [];
 
     /**
-     * 默认渠道
+     * 默认渠道.
      *
      * @var string
      */
     protected $defaultChannel = 'kuaidi100';
 
     /**
-     * 构造函数
+     * 构造函数.
      *
      * @param array $config
      */
@@ -68,13 +67,14 @@ class Logistics
     {
         $this->config = Config::set($config);
 
-        $this->factory = new Factory;
+        $this->factory = new Factory();
     }
 
     /**
-     * 设置查询渠道
+     * 设置查询渠道.
      *
      * @param string|string[] $name
+     *
      * @return self
      */
     public function setChannel($name)
@@ -95,11 +95,13 @@ class Logistics
     }
 
     /**
-     * 查询快递
+     * 查询快递.
      *
-     * @param string $number 快递单号
+     * @param string          $number  快递单号
      * @param string|string[] $company 快递公司 不填则自动获取
+     *
      * @return array
+     *
      * @throws InvalidArgumentException
      * @throws NoAvailableException
      */
@@ -116,7 +118,6 @@ class Logistics
         }
 
         foreach ($this->channel as $channel) {
-
             // 取出快递编码
             if (is_array($company)) {
                 $company_code = isset($company[$channel]) ? $company[$channel] : '';
@@ -138,7 +139,6 @@ class Logistics
                     'exception' => $request['message'],
                 ];
             }
-
         }
 
         $collectionOfException = array_column($results, 'exception');

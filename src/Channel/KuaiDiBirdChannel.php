@@ -13,14 +13,12 @@ namespace Daley\Logistics\Channel;
 
 use Daley\Logistics\Exceptions\HttpException;
 use Daley\Logistics\Util\ChannelCode;
-use Daley\Logistics\Util\UserAgent;
 
 /**
  * 快递鸟查询物流接口.
  */
 class KuaiDiBirdChannel extends Channel
 {
-
     /**
      * 增值请求.
      *
@@ -46,7 +44,9 @@ class KuaiDiBirdChannel extends Channel
      * 拼接请求URL链接.
      *
      * @param string $data 请求的数据
+     *
      * @return array
+     *
      * @throws \Daley\Logistics\Exceptions\InvalidArgumentException
      */
     public function setRequestParam($data)
@@ -55,10 +55,10 @@ class KuaiDiBirdChannel extends Channel
 
         return [
             'EBusinessID' => isset($config['app_key']) ? $config['app_key'] : '',
-            'DataType'    => 2,
+            'DataType' => 2,
             'RequestType' => isset($config['vip']) && $config['vip'] ? self::PAYED : self::FREE,
             'RequestData' => urlencode($data),
-            'DataSign'    => $this->encrypt($data, isset($config['app_secret']) ? $config['app_secret'] : ''),
+            'DataSign' => $this->encrypt($data, isset($config['app_secret']) ? $config['app_secret'] : ''),
         ];
     }
 
@@ -72,7 +72,7 @@ class KuaiDiBirdChannel extends Channel
      */
     protected function encrypt($data, $appKey)
     {
-        return urlencode(base64_encode(md5($data . $appKey)));
+        return urlencode(base64_encode(md5($data.$appKey)));
     }
 
     /**
@@ -80,7 +80,9 @@ class KuaiDiBirdChannel extends Channel
      *
      * @param string $code
      * @param string $company
+     *
      * @return array
+     *
      * @throws HttpException
      * @throws \Daley\Logistics\Exceptions\InvalidArgumentException
      */
@@ -96,7 +98,6 @@ class KuaiDiBirdChannel extends Channel
             $response = $this->httpClient->post($this->url, ['form_params' => $requestData, 'headers' => ['charset' => 'utf-8']]);
 
             $this->toArray($response->getBody()->getContents());
-
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
         }

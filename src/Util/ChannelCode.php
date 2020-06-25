@@ -17,7 +17,7 @@ use GuzzleHttp\Client;
 class ChannelCode
 {
     /**
-     * 快递公司配置
+     * 快递公司配置.
      *
      * @var string[][]
      */
@@ -78,10 +78,12 @@ class ChannelCode
     /**
      * 通过快递100接口自动获取快递公司编码
      *
-     * @param string $channel 指定渠道
-     * @param string $code 指定单号
+     * @param string $channel     指定渠道
+     * @param string $code        指定单号
      * @param Client $http_client
+     *
      * @return string
+     *
      * @throws InvalidArgumentException
      */
     public static function getCode($channel, $code, Client $http_client)
@@ -92,7 +94,6 @@ class ChannelCode
         try {
             $companyCodeInfo = $http_client->get($url, ['query' => $params]);
             $res = json_decode($companyCodeInfo->getBody()->getContents());
-
         } catch (\Exception $exception) {
             throw new InvalidArgumentException($exception->getMessage(), $exception->getCode(), $exception);
         }
@@ -107,7 +108,9 @@ class ChannelCode
             $kuaidi100CompanyCodeArr = array_column($res->auto, 'comCode');
             $kuaidi100CompanyCode = isset($kuaidi100CompanyCodeArr[0]) ? $kuaidi100CompanyCodeArr[0] : '';
 
-            if (!isset($kuaidi100CompanyCode)) return '';
+            if (!isset($kuaidi100CompanyCode)) {
+                return '';
+            }
 
             foreach (self::$companyList as $name => $item) {
                 if (isset($kuaidi100CompanyCode) && $item['kuaidi100'] === $kuaidi100CompanyCode) {
