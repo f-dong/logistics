@@ -9,8 +9,8 @@
 
 | 平台 | 调用方式 | 是否需要快递公司编码 |
 | :-----: | :-----: | :-----: |
-| [快递100](%5Bhttps://www.kuaidi100.com/openapi/applyapi.shtml%5D(https://www.kuaidi100.com/openapi/applyapi.shtml) | kuaidi100 | Y |
-| [快递鸟](%5Bhttp://www.kdniao.com/api-all%5D(http://www.kdniao.com/api-all) | kuaidibird | Y |
+| [快递100](https://www.kuaidi100.com/openapi/applyapi.shtml) | kuaidi100 | Y |
+| [快递鸟](http://www.kdniao.com/api-all) | kuaidibird | Y |
 | [急速数据](https://www.jisuapi.com/api/express) | jisu | N |
 | [爱查快递](https://www.ickd.cn/api) | ickd | N |
 
