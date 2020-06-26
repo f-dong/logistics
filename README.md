@@ -18,8 +18,9 @@
 | [快递鸟](http://www.kdniao.com/api-all) | kuaidibird | Y |
 | [急速数据](https://www.jisuapi.com/api/express) | jisu | N |
 | [爱查快递](https://www.ickd.cn/api) | ickd | N |
+| [百度快递](https://www.baidu.com) | baidu | N |
 
-* 爱查快递为抓取接口，无法保证数据准确性与稳定性
+* 爱查快递与百度快递为抓取接口，无法保证数据准确性与稳定性
 
 ## 环境需求
 *   PHP >= 5.6
@@ -27,7 +28,7 @@
 ## 安装
 
 ```shell
-$ composer require daley/logistics -vvv
+$ composer require daley/logistics
 ```
 
 ## 使用
@@ -49,13 +50,13 @@ $logistics = new Logistics([
     ],
     // 急速快递配置
     'jisu' => [
-        'app_key' => '4280d81691e86974'
+        'app_key' => ''
     ],
 ]);
 
 // 查询物流
 try {
-    var_dump($log->query('73129084446868', 'zhongtong'));
+    var_dump($logistics->query('73129084446868', 'zhongtong'));
 } catch (\Daley\Logistics\Exceptions\HttpException $exception) {
     // HTTP请求异常
 } catch (\Daley\Logistics\Exceptions\InvalidArgumentException $exception) {
@@ -67,7 +68,7 @@ try {
 }
 ```
 ### 参数说明
-```php
+```
 array query(string $code [, mixed $company = null])
 ```
 * $code - 运单号

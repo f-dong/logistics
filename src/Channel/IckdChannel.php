@@ -58,11 +58,11 @@ class IckdChannel extends Channel
             'tk' => $this->randCode(),
             'tm' => time() - 1,
             'callback' => '_jqjsp',
-            '_'.time(),
+            '_' . time(),
         ];
 
         try {
-            $res = $this->httpClient->get($this->url.$code, ['query' => $urlParams, 'headers' => ['referer: https://biz.trace.ickd.cn']]);
+            $res = $this->httpClient->get($this->url . $code, ['query' => $urlParams, 'headers' => ['referer: https://biz.trace.ickd.cn']]);
 
             $this->toArray($res->getBody()->getContents());
         } catch (\Exception $e) {

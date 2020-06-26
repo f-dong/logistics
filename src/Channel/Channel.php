@@ -45,7 +45,7 @@ abstract class Channel
      */
     public function __construct()
     {
-        $this->httpClient = new Client(['timeout' => 10, 'headers' => $this->getUserAgent(), 'verify' => false]);
+        $this->httpClient = new Client(['timeout' => 10, 'headers' => $this->getUserAgent(), 'verify' => false, 'cookies' => true]);
     }
 
     /**

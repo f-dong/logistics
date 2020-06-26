@@ -140,10 +140,10 @@ class KuaiDiBirdChannel extends Channel
             ];
         } else {
             $this->response = [
-                'status' => 0,
+                'status' => 1,
                 'message' => $jsonToArray['Reason'],
                 'error_code' => $jsonToArray['State'],
-                'data' => [],
+                'data' => $jsonToArray['Traces'],
                 'logistics_company' => '',
             ];
         }

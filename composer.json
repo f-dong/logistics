@@ -1,6 +1,6 @@
 {
     "name": "daley/logistics",
-    "description": "通用快递查询SDK",
+    "description": "通用快递查询SDK， 支持多家快递查询渠道",
     "license": "MIT",
     "authors": [
         {
