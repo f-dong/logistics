@@ -30,7 +30,9 @@ class BaiDuChannel extends Channel
      *
      * @param string $code
      * @param string $company
+     *
      * @return array
+     *
      * @throws HttpException
      */
     public function query($code, $company = '')
@@ -40,8 +42,8 @@ class BaiDuChannel extends Channel
         try {
             $response = $this->httpClient->get($this->url, ['query' => [
                 'tokenV2' => $tokenV2,
-                'appid'   => 4001,
-                'nu'      => $code,
+                'appid' => 4001,
+                'nu' => $code,
             ]]);
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
@@ -66,7 +68,7 @@ class BaiDuChannel extends Channel
             $response = $this->httpClient->get($tokenUrl);
 
             preg_match('/tokenV2=(.*?)"/i', $response->getBody()->getContents(), $match);
-            if(!empty($match[1])){
+            if (!empty($match[1])) {
                 return $match[1];
             }
         } catch (\Exception $e) {
@@ -99,7 +101,7 @@ class BaiDuChannel extends Channel
     {
         $jsonToArray = json_decode($response, true);
 
-        if (!isset($jsonToArray['status']) ||$jsonToArray['status'] != 0) {
+        if (!isset($jsonToArray['status']) || 0 != $jsonToArray['status']) {
             $this->response = [
                 'status' => 0,
                 'message' => isset($jsonToArray['msg']) ? $jsonToArray['msg'] : '物流信息查询失败',
