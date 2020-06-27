@@ -28,13 +28,15 @@ class KuaiDi100Channel extends Channel
      *
      * @param string $code    快递单号
      * @param string $company 物流公司编码 留空自动获取
+     * @param string $phone 收 / 寄 件人电话 顺丰快递需要
      *
      * @return array
      *
      * @throws HttpException
      * @throws \Daley\Logistics\Exceptions\InvalidArgumentException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function query($code, $company = '')
+    public function query($code, $company = '', $phone = '')
     {
         if (empty($company)) {
             $company = ChannelCode::getCode($this->getClassName(), $code, $this->httpClient);
@@ -43,6 +45,7 @@ class KuaiDi100Channel extends Channel
         $postJson = json_encode([
             'num' => $code,
             'com' => $company,
+            'phone' => $phone,
         ]);
         $config = $this->getConfig();
         $params = [

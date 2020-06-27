@@ -12,7 +12,7 @@
 
 ## 支持查询接口平台
 
-| 平台 | 调用方式 | 是否需要快递公司编码 |
+| 平台 | 调用渠道名 | 是否需要快递公司编码 |
 | :-----: | :-----: | :-----: |
 | [快递100](https://www.kuaidi100.com/openapi/applyapi.shtml) | kuaidi100 | Y |
 | [快递鸟](http://www.kdniao.com/api-all) | kuaidibird | Y |
@@ -20,7 +20,7 @@
 | [爱查快递](https://www.ickd.cn/api) | ickd | N |
 | [百度快递](https://www.baidu.com) | baidu | N |
 
-* 爱查快递与百度快递为抓取接口，无法保证数据准确性与稳定性
+* 爱查快递、百度快递为抓取接口，无法保证数据准确性与稳定性. 无法查询顺丰快递.
 
 ## 环境需求
 *   PHP >= 5.6
@@ -36,6 +36,7 @@ $ composer require daley/logistics
 ```php
 use Daley\Logistics\Logistics;
 
+// 使用不到的渠道不传即可
 $logistics = new Logistics([
     // 快递100配置
     'kuaidi100' => [
@@ -69,10 +70,11 @@ try {
 ```
 ### 参数说明
 ```
-array query(string $code [, mixed $company = null])
+array query(string $code [, mixed $company = null, string $phone])
 ```
 * $code - 运单号
 * $company - 快递公司编码 参考各渠道提供的渠道列表 不填为自动抓取 不保证准确性 多公司时使用数组 如 `['kuaidi100' => 'zhongtong', 'kuaidibird' => 'ZTO']`
+* $phone - 寄件 / 收件 手机号码 查询顺丰时需要用到
 
 ### 更换查询渠道
 ```php
@@ -83,7 +85,7 @@ $logistics->setChannel('kuaidibird')->query('73129084446868');
 $logistics->setChannel(['kuaidi100', 'kuaidibird'])->query('73129084446868');
 ```
 
-## 返回事例
+## 返回示例
 
 ```php
 //  成功返回

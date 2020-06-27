@@ -13,9 +13,6 @@ namespace Daley\Logistics\Channel;
 
 use Daley\Logistics\Exceptions\HttpException;
 
-/**
- * 快递鸟查询物流接口.
- */
 class BaiDuChannel extends Channel
 {
     /**
@@ -34,6 +31,7 @@ class BaiDuChannel extends Channel
      * @return array
      *
      * @throws HttpException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function query($code, $company = '')
     {
@@ -59,6 +57,8 @@ class BaiDuChannel extends Channel
      * 获取TokenV2.
      *
      * @return mixed|null
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function getTokenV2()
     {

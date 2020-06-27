@@ -21,21 +21,26 @@ class JiSuChannel extends Channel
     protected $url = 'https://api.jisuapi.com/express/query';
 
     /**
-     * 发起请求
+     * 发起请求.
      *
      * @param string $code
      * @param string $company
-     *
+     * @param string $mobile
      * @return array
-     *
      * @throws HttpException
      * @throws \Daley\Logistics\Exceptions\InvalidArgumentException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function query($code, $company = '')
+    public function query($code, $company = '', $mobile = '')
     {
         $config = $this->getConfig();
 
-        $params = ['type' => 'auto', 'number' => $code, 'appkey' => isset($config['app_key']) ? $config['app_key'] : ''];
+        $params = [
+            'type' => $company ?: 'auto',
+            'number' => $code,
+            'appkey' => isset($config['app_key']) ? $config['app_key'] : '',
+            'mobile' => $mobile
+        ];
 
         try {
             $res = $this->httpClient->get($this->url, ['query' => $params]);
