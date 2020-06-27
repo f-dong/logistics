@@ -26,7 +26,9 @@ class JiSuChannel extends Channel
      * @param string $code
      * @param string $company
      * @param string $mobile
+     *
      * @return array
+     *
      * @throws HttpException
      * @throws \Daley\Logistics\Exceptions\InvalidArgumentException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -39,7 +41,7 @@ class JiSuChannel extends Channel
             'type' => $company ?: 'auto',
             'number' => $code,
             'appkey' => isset($config['app_key']) ? $config['app_key'] : '',
-            'mobile' => $mobile
+            'mobile' => $mobile,
         ];
 
         try {

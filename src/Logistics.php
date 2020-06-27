@@ -99,7 +99,7 @@ class Logistics
      *
      * @param string          $number  快递单号
      * @param string|string[] $company 快递公司 不填则自动获取
-     * @param string $mobile 收件 / 寄件人 手机号 顺丰快递需要
+     * @param string          $mobile  收件 / 寄件人 手机号 顺丰快递需要
      *
      * @return array
      *

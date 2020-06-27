@@ -28,7 +28,7 @@ class KuaiDi100Channel extends Channel
      *
      * @param string $code    快递单号
      * @param string $company 物流公司编码 留空自动获取
-     * @param string $phone 收 / 寄 件人电话 顺丰快递需要
+     * @param string $phone   收 / 寄 件人电话 顺丰快递需要
      *
      * @return array
      *
