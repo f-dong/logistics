@@ -60,8 +60,6 @@ class Logistics
 
     /**
      * 构造函数.
-     *
-     * @param array $config
      */
     public function __construct(array $config = [])
     {

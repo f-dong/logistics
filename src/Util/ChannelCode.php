@@ -78,9 +78,8 @@ class ChannelCode
     /**
      * 通过快递100接口自动获取快递公司编码
      *
-     * @param string $channel     指定渠道
-     * @param string $code        指定单号
-     * @param Client $http_client
+     * @param string $channel 指定渠道
+     * @param string $code    指定单号
      *
      * @return string
      *
