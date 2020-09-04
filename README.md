@@ -14,11 +14,11 @@
 
 | 平台 | 调用渠道名 | 是否需要快递公司编码 |
 | :-----: | :-----: | :-----: |
-| [快递100](https://www.kuaidi100.com/openapi/applyapi.shtml) | kuaidi100 | Y |
-| [快递鸟](http://www.kdniao.com/api-all) | kuaidibird | Y |
-| [急速数据](https://www.jisuapi.com/api/express) | jisu | N |
-| [爱查快递](https://www.ickd.cn/api) | ickd | N |
-| [百度快递](https://www.baidu.com) | baidu | N |
+| [快递100](https://www.kuaidi100.com/openapi/applyapi.shtml) | kuaiDi100 | Y |
+| [快递鸟](http://www.kdniao.com/api-all) | kuaiDiBird | Y |
+| [急速数据](https://www.jisuapi.com/api/express) | jiSu | N |
+| [爱查快递](https://www.ickd.cn/api) | icKd | N |
+| [百度快递](https://www.baidu.com) | baiDu | N |
 
 * 爱查快递、百度快递为抓取接口，无法保证数据准确性与稳定性. 无法查询顺丰快递.
 
@@ -79,10 +79,10 @@ array query(string $code [, mixed $company = null, string $phone])
 ### 更换查询渠道
 ```php
 // 不设置默认使用快递100
-$logistics->setChannel('kuaidibird')->query('73129084446868');
+$logistics->setChannel('kuaiDiBird')->query('73129084446868');
 
 // 查询多渠道
-$logistics->setChannel(['kuaidi100', 'kuaidibird'])->query('73129084446868');
+$logistics->setChannel(['kuaiDi100', 'kuaiDiBird'])->query('73129084446868');
 ```
 
 ## 返回示例
@@ -91,7 +91,7 @@ $logistics->setChannel(['kuaidi100', 'kuaidibird'])->query('73129084446868');
 //  成功返回
 [
    'kuaidi100' => [
-       'channel' => 'kuaidi100',
+       'channel' => 'kuaiDi100',
        'status' => 'success',
        'result' => [
            [
@@ -112,7 +112,7 @@ $logistics->setChannel(['kuaidi100', 'kuaidibird'])->query('73129084446868');
 // 失败返回
 [
    'kuaidi100' => [
-       'channel' => 'kuaidi100',
+       'channel' => 'kuaiDi100',
        'status' => 'failure',
        'exception' => '数据不完整',
    ],
@@ -130,14 +130,14 @@ $ php artisan vendor:publish --provider=Daley\Logistics\Laravel\LogisticsService
 ```php
 public function edit(Logistics $logistics) 
 {
-    $response = $logistics->setChannel('kuaidi100')->query('73129084446868', 'zhongtong');
+    $response = $logistics->setChannel('kuaiDi100')->query('73129084446868', 'zhongtong');
 }
 ```
 * 服务名访问
 ```php
 public function edit() 
 {
-    $response = app('logistics')->setChannel('kuaidi100')->query('73129084446868', 'zhongtong');
+    $response = app('logistics')->setChannel('kuaiDi100')->query('73129084446868', 'zhongtong');
 }
 ```
 
