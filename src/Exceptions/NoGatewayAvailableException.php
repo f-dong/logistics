@@ -29,8 +29,7 @@ class NoGatewayAvailableException extends Exception
     /**
      * NoGatewayAvailableException constructor.
      *
-     * @param array           $results
-     * @param int             $code
+     * @param int $code
      */
     public function __construct(array $results = [], $code = 0)
     {
