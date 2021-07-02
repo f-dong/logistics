@@ -25,6 +25,5 @@ interface GatewayInterface
      */
     public function getName();
 
-
     public function query($code, Config $config);
 }

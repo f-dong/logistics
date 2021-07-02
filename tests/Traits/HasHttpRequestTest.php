@@ -12,9 +12,9 @@
 namespace Daley\Logistics\Tests\Traits;
 
 use Daley\Logistics\Tests\TestCase;
+use Daley\Logistics\Traits\HasHttpRequest;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use Daley\Logistics\Traits\HasHttpRequest;
 use Psr\Http\Message\ResponseInterface;
 
 class HasHttpRequestTest extends TestCase

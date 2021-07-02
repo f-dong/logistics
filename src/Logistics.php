@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the daley/logistics.
+ *
+ * (c) daley <fdong26@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Daley\Logistics;
 
 use Daley\Logistics\Contracts\GatewayInterface;
@@ -36,7 +45,7 @@ class Logistics
 
     public function gateway($name)
     {
-        if (!isset($this->gateways[$name])) {
+        if (! isset($this->gateways[$name])) {
             $this->gateways[$name] = $this->createGateway($name);
         }
 
@@ -63,7 +72,7 @@ class Logistics
      */
     protected function makeGateway($gateway, $config)
     {
-        if (!\class_exists($gateway) || !\in_array(GatewayInterface::class, \class_implements($gateway))) {
+        if (! \class_exists($gateway) || ! \in_array(GatewayInterface::class, \class_implements($gateway))) {
             throw new InvalidArgumentException(\sprintf('Class "%s" is a invalid logistics gateway.', $gateway));
         }
 
