@@ -53,6 +53,15 @@ class Logistics
         $this->config = new Config($config);
     }
 
+    public function query($code, $company = '', $phone = '')
+    {
+        if (empty($gateways)) {
+            $gateways = $this->config->get('default.gateways', []);
+        }
+
+        return $this->getMessenger()->query($code, $this->formatGateways($gateways));
+    }
+
     /**
      * Create a gateway.
      *
@@ -168,5 +177,31 @@ class Logistics
         $name = \ucfirst(\str_replace(['-', '_', ''], '', $name));
 
         return __NAMESPACE__."\\Gateways\\{$name}Gateway";
+    }
+
+    /**
+     * @param array $gateways
+     *
+     * @return array
+     */
+    protected function formatGateways(array $gateways)
+    {
+        $formatted = [];
+
+        foreach ($gateways as $gateway => $setting) {
+            if (\is_int($gateway) && \is_string($setting)) {
+                $gateway = $setting;
+                $setting = [];
+            }
+
+            $formatted[$gateway] = $setting;
+            $globalSettings = $this->config->get("gateways.{$gateway}", []);
+
+            if (\is_string($gateway) && !empty($globalSettings) && \is_array($setting)) {
+                $formatted[$gateway] = new Config(\array_merge($globalSettings, $setting));
+            }
+        }
+
+        return $formatted;
     }
 }
