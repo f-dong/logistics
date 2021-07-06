@@ -71,7 +71,7 @@ class Messenger
             }
         }
 
-        if (!$isSuccessful) {
+        if (! $isSuccessful) {
             throw new NoGatewayAvailableException($results);
         }
 

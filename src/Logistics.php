@@ -84,7 +84,7 @@ class Logistics
     {
         $config = $this->config->get("gateways.{$name}", []);
 
-        if (!isset($config['timeout'])) {
+        if (! isset($config['timeout'])) {
             $config['timeout'] = $this->config->get('timeout', Gateway::DEFAULT_TIMEOUT);
         }
 
@@ -97,7 +97,7 @@ class Logistics
             $gateway = $this->makeGateway($className, $config);
         }
 
-        if (!($gateway instanceof GatewayInterface)) {
+        if (! ($gateway instanceof GatewayInterface)) {
             throw new InvalidArgumentException(\sprintf('Gateway "%s" must implement interface %s.', $name, GatewayInterface::class));
         }
 
