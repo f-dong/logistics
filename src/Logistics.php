@@ -197,7 +197,7 @@ class Logistics
             $formatted[$gateway] = $setting;
             $globalSettings = $this->config->get("gateways.{$gateway}", []);
 
-            if (\is_string($gateway) && !empty($globalSettings) && \is_array($setting)) {
+            if (\is_string($gateway) && ! empty($globalSettings) && \is_array($setting)) {
                 $formatted[$gateway] = new Config(\array_merge($globalSettings, $setting));
             }
         }
